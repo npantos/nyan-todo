@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div text-center>
+  <button margin (click)="addNewTodo()" ion-button>Add new todo</button>
+  </div>
+  <img margin src="{{ image }}" alt="" (click)="play()">
+
+  <audio id="audio">
+    <source src="http://www.albinoblacksheep.com//audio/mp3/Nyanyanyanyanyanyanya.mp3" type="audio/mpeg">
+  </audio>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items">
+
+
+        <button ion-item  (click)="selectItem(item)">
+          <ion-icon name="heart"></ion-icon> {{ item.date | date :  "dd.MM.y."  }} - {{ item.title }}
+          <div class="item-note">{{ item.note }}</div>
+        </button>
+        <ion-item-options side="right">
+          <button ion-button (click)="edit(item)">Edit</button>
+          <button ion-button color="danger" (click)="delete(item)">Delete</button>
+        </ion-item-options>
+
+    </ion-item-sliding>
+</ion-list>
+
+
+  <div *ngIf="selectedItem">
+    Selektovali ste {{ selectedItem.title }}
+  </div>
+</ion-content>
